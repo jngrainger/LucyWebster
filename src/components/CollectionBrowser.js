@@ -10,7 +10,7 @@ const CollectionBrowser = () => {
     return (
         <div>
             {[marshmallowMonsters, untitledLips, untitledNails, lumene].map((collection, i) => {
-                const interval = randomIntInRange(600, 850);
+                const interval = randomIntInRange(1500, 1800);
                 return <Slideshow key={i} collectionInformation={collection} interval={interval} numberInRotation={4} />
             })}
         </div>

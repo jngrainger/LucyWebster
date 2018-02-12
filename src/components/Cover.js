@@ -29,7 +29,7 @@ export default class Cover extends Component {
             <div className="App">
                 <Link to="/overview">
                     <div className="logo-container">
-                            <img src="/logo.png" width="800" alt="logo-large"/>
+                            <img src="/logo.png" width="600" alt="logo-large"/>
                     </div>
                     <Paint
                         style={{
