@@ -1,6 +1,6 @@
 import React from 'react';
 import { kiko } from '../collection-data';
-import Slideshow from './Slideshow';
+import Slideshow from '../Slideshow';
 
 function randomIntInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);

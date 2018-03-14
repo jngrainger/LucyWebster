@@ -1,12 +1,12 @@
 import React from 'react';
 import { marshmallowMonsters, untitledLips, untitledNails, lumene } from '../collection-data';
-import Slideshow from './Slideshow';
+import Slideshow from '../Slideshow';
 
 function randomIntInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const CollectionBrowser = () => {
+const Styling = () => {
     return (
         <div>
             {[marshmallowMonsters, untitledLips, untitledNails, lumene].map((collection, i) => {
@@ -17,4 +17,4 @@ const CollectionBrowser = () => {
     );
 };
 
-export default CollectionBrowser;
+export default Styling;
