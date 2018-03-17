@@ -1,20 +1,17 @@
 import React from 'react';
-import { marshmallowMonsters, untitledLips, untitledNails, lumene } from '../collection-data';
+import collections from './collections';
 import Slideshow from '../Slideshow';
 
-function randomIntInRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-const Styling = () => {
+export default class Styling extends React.Component {
+  render() {
+    const { match } = this.props;
+    const selectedTitle = match.params.collectionTitle;
     return (
-        <div>
-            {[marshmallowMonsters, untitledLips, untitledNails, lumene].map((collection, i) => {
-                const interval = randomIntInRange(1500, 1800);
-                return <Slideshow key={i} collectionInformation={collection} interval={interval} numberInRotation={4} />
-            })}
-        </div>
+      <div>
+        {collections.filter(c => !selectedTitle || c.title === selectedTitle).map(collection => {
+          return <Slideshow key={collection.title} collectionInformation={collection} showArrows />;
+        })}
+      </div>
     );
-};
-
-export default Styling;
+  }
+}

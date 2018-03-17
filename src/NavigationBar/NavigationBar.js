@@ -4,10 +4,12 @@ import stylingCollections from '../Styling/collections';
 
 const NavigationBar = () => {
   return (
-    <div className="overview-container">
-      <Link to="overview">
-        <img src="/logo.png" width="250" alt="logo" />
-      </Link>
+    <div className="navigation-container">
+      <div>
+        <Link to="overview">
+          <img src="/logo.png" width="250" alt="logo" />
+        </Link>
+      </div>
       <div className="menu-bar">
         <Link to="/styling">
           <span>styling</span>
@@ -22,7 +24,7 @@ const NavigationBar = () => {
       <Route
         path="/styling"
         render={() => (
-          <div className="menu-bar">
+          <div className="sub-menu-bar">
             {stylingCollections.map(c => <Link to={`/styling/${c.title}`}>{c.title}</Link>)}
           </div>
         )}
