@@ -1,11 +1,11 @@
-
 body {
   margin: 0;
   padding: 0;
   font-family: 'GFS Didot', serif;
 }
 
-.menu-bar a:visited, .sub-menu-bar a:visited {
+.menu-bar a:visited,
+.sub-menu-bar a:visited {
   color: black;
 }
 
@@ -17,21 +17,17 @@ body {
 }
 
 .menu-bar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   flex: none;
-  width: 300px;
   font-size: 20px;
   margin-top: 10px;
-  margin-bottom: 15px;
-  font-weight: 500;
+  margin-bottom: 25px;
+  font-weight: 300;
 }
 
 .menu-bar > a {
   text-decoration: none;
   text-decoration-color: black;
+  margin-right: 35px;
 }
 
 .menu-bar > a:active,
@@ -45,13 +41,23 @@ body {
   font-weight: 300;
   display: flex;
   flex-direction: row;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 }
 
-.sub-menu-bar > a {
+.sub-menu-bar > div {
+  margin-right: 20px;
+}
+
+.sub-menu-bar a {
   text-decoration: none;
   text-decoration-color: black;
-  margin-right: 20px;
+  color: black;
+}
+
+.sub-menu-bar > a:active,
+.sub-menu-bar a:hover {
+  font-style: italic;
+  /* font-weight: 700; */
 }
 
 .logo-container {
@@ -101,6 +107,7 @@ body {
   margin-bottom: 80px;
   flex-direction: column;
   align-items: center;
+  flex: 1 1 auto;
 }
 
 .image-container {
@@ -146,4 +153,41 @@ body {
 
 ::selection {
   background: #ffb7b7; /* WebKit/Blink Browsers */
+}
+.styling--fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+.styling {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.styling__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: 42px;
+  padding: 20px;
+  text-decoration: none;
+  text-decoration-color: black;
+  color: black;
+}
+
+.styling__content {
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.styling__header a {
+  text-decoration: none;
+  text-decoration-color: black;
 }

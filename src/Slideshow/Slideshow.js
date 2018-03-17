@@ -59,7 +59,6 @@ class Slideshow extends Component {
     } else {
       this.moveToNextImage();
     }
-    document.getSelection().removeAllRanges();
   }
 
   handleMouseMove(event) {
@@ -78,10 +77,10 @@ class Slideshow extends Component {
           ref={node => (this.imageContainer = node)}
           onClick={this.handleClick}
           onMouseMove={this.handleMouseMove}
-          style={{ cursor: `url("${side}.png"), auto` }}
+          style={showArrows ? { cursor: `url("/${side}.png"), auto` } : {}}
         >
           <ProgressiveImage src={this.photos[index].path} placeholder={this.photos[index].placeholder}>
-            {src => <img style={{ height: 450 }} src={src} alt={this.photos[index].path} />}
+            {src => <img style={{ height: '60vh', userSelect: 'none' }} src={src} alt={this.photos[index].path} />}
           </ProgressiveImage>
         </div>
         <div className="photo-overlay">
