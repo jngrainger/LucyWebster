@@ -68,7 +68,7 @@ class Slideshow extends Component {
   }
 
   render() {
-    const { collectionInformation, showArrows } = this.props;
+    const { collectionInformation, showArrows, showTitle = true, showDescription = true } = this.props;
     const { index, side } = this.state;
     return (
       <div className="photo-container">
@@ -80,15 +80,18 @@ class Slideshow extends Component {
           style={showArrows ? { cursor: `url("/${side}.png"), auto` } : {}}
         >
           <ProgressiveImage src={this.photos[index].path} placeholder={this.photos[index].placeholder}>
-            {src => <img style={{ height: '60vh', userSelect: 'none' }} src={src} alt={this.photos[index].path} />}
+            {src => (
+              <img
+                style={{ height: showArrows ? '80vh' : 450, userSelect: 'none' }}
+                src={src}
+                alt={this.photos[index].path}
+              />
+            )}
           </ProgressiveImage>
         </div>
         <div className="photo-overlay">
-          <div className="photo-description">
-            <b>{collectionInformation.title}</b>
-            <br />
-            <i>{collectionInformation.description}</i>
-          </div>
+          {showTitle && <div className="photo-description--primary">{collectionInformation.title}</div>}
+          {showDescription && <div className="photo-description--secondary">{collectionInformation.description}</div>}
         </div>
       </div>
     );

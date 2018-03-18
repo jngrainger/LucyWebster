@@ -8,12 +8,32 @@ function randomIntInRange(min, max) {
 
 const Styling = () => {
   return (
-    <div>
+    <div style={{ position: 'relative', padding: 20 }}>
       {collections.map(collection => {
-        return <Slideshow key={collection.title} collectionInformation={collection} autoFlick />;
+        return (
+          <div style={{ width: '100%', paddingTop: 35 }}>
+            <Slideshow key={collection.title} collectionInformation={collection} autoFlick />
+          </div>
+        );
       })}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '50%',
+          backgroundImage: 'url("/showcase.png")',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          width: '100%',
+          height: 800,
+          transform: 'translateX(-50%)',
+        }}
+      />
     </div>
   );
 };
 
 export default Styling;
+
+// 1744 × 1304
