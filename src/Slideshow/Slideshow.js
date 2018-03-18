@@ -16,7 +16,7 @@ class Slideshow extends Component {
 
   componentDidMount() {
     if (this.props.autoFlick) {
-      this.autoFlickInterval = setInterval(this.moveToNextImage, 3000);
+      this.autoFlickInterval = setInterval(this.moveToNextImage, 1300);
     }
   }
 
@@ -82,7 +82,7 @@ class Slideshow extends Component {
           <ProgressiveImage src={this.photos[index].path} placeholder={this.photos[index].placeholder}>
             {src => (
               <img
-                style={{ height: showArrows ? '80vh' : 450, userSelect: 'none' }}
+                style={{ height: showArrows ? '80vh' : 400, userSelect: 'none' }}
                 src={src}
                 alt={this.photos[index].path}
               />

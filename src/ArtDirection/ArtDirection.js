@@ -11,7 +11,7 @@ const Styling = () => {
     <div style={{ position: 'relative', padding: 20 }}>
       {collections.map(collection => {
         return (
-          <div style={{ width: '100%', paddingTop: 35 }}>
+          <div style={{ width: '100%', paddingTop: 55 }}>
             <Slideshow key={collection.title} collectionInformation={collection} autoFlick />
           </div>
         );
@@ -24,9 +24,9 @@ const Styling = () => {
           backgroundImage: 'url("/showcase.png")',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center',
+          backgroundPosition: 'top center',
           width: '100%',
-          height: 800,
+          height: 900,
           transform: 'translateX(-50%)',
         }}
       />
