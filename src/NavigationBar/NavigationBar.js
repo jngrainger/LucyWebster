@@ -10,9 +10,9 @@ const NavigationBar = () => {
         </Link>
       </div>
       <div className="menu-bar">
-        <Link to="/styling">styling</Link>
-        <Link to="/art-direction">art direction</Link>
-        <Link to="/info">info</Link>
+        <Link to="/styling" activeClassName="active">styling</Link>
+        <Link to="/art-direction" activeClassName="active">art direction</Link>
+        <Link to="/info" activeClassName="active">info</Link>
       </div>
     </div>
   );

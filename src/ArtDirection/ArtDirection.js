@@ -16,17 +16,14 @@ const Styling = () => {
           </div>
         );
       })}
-      <div
+      <img
+        src="/showcase.png"
+        height={800}
+        alt="computer screen showing the content on its screen"
         style={{
           position: 'absolute',
           top: 0,
           left: '50%',
-          backgroundImage: 'url("/showcase.png")',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'top center',
-          width: '100%',
-          height: 800,
           transform: 'translateX(-50%)',
         }}
       />
