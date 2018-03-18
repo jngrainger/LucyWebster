@@ -26,7 +26,7 @@ const Styling = () => {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'top center',
           width: '100%',
-          height: 900,
+          height: 800,
           transform: 'translateX(-50%)',
         }}
       />
