@@ -8,10 +8,11 @@ export default class Overview extends React.Component {
   
   render() {
     return chunk(collections, 2).map(pair => (
-      <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'stretch' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', width: '100%', paddingTop: 240, justifyContent: 'stretch' }}>
         {pair[0] && (
           <div style={{ width: '50%', minWidth: 350 }}>
             <Slideshow
+              jump
               collectionInformation={pair[0]}
               numberInRotation={3}
               autoFlick={FlickType.EVEN}
@@ -23,6 +24,7 @@ export default class Overview extends React.Component {
         {pair[1] && (
           <div style={{ width: '50%', alignSelf: 'flex-end' }}>
             <Slideshow
+              jump
               collectionInformation={pair[1]}
               numberInRotation={3}
               autoFlick={FlickType.ODD}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import isFunction from 'lodash/isFunction';
 import ProgressiveImage from 'react-progressive-image';
+import FlickType from '../FlickType';
 
 // If the first argument is a callback we invoke with the rest of the calling arguments, otherwise we just return the first argument.
 const safeCall = (value, ...rest) => (isFunction(value) ? value(...rest) : value);
@@ -20,13 +22,23 @@ class Slideshow extends Component {
 
   componentDidMount() {
     if (this.props.autoFlick) {
-      this.autoFlickInterval = setInterval(this.moveToNextImage, 1300);
+      if (this.props.autoFlick === FlickType.EVEN) {
+        this.autoFlickTimeout = setTimeout(
+          () => (this.autoFlickInterval = setInterval(this.moveToNextImage, 1300)),
+          800
+        );
+      } else {
+        this.autoFlickInterval = setInterval(this.moveToNextImage, 1300);
+      }
     }
   }
 
   componentWillUnmount() {
     if (this.autoFlickInterval) {
       clearInterval(this.autoFlickInterval);
+    }
+    if (this.autoFlickTimeout) {
+      clearTimeout(this.autoFlickTimeout);
     }
   }
 
@@ -58,7 +70,7 @@ class Slideshow extends Component {
     const { showArrows } = this.props;
     const { side } = this.state;
     const { clientX } = event;
-    if (showArrows && side === 'left') {
+    if (showArrows && side === 'back') {
       this.moveToPrevImage();
     } else {
       this.moveToNextImage();
@@ -68,14 +80,20 @@ class Slideshow extends Component {
   handleMouseMove(event) {
     const { clientX } = event;
     const midpoint = this.imageContainer.clientWidth / 2;
-    this.setState({ side: clientX < midpoint ? 'left' : 'right' });
+    this.setState({ side: clientX < midpoint ? 'back' : 'next' });
   }
 
   render() {
-    const { collectionInformation, showArrows, showTitle = true, showDescription = true } = this.props;
-    const { index, side } = this.state;
+    const { collectionInformation, autoFlick, showArrows, jump, showTitle = true, showDescription = true } = this.props;
+    const { index, side, over } = this.state;
     return (
-      <div className="photo-container">
+      <div
+        ref={element => (this.element = element)}
+        className="photo-container"
+        style={{ position: 'relative', left: over ? (autoFlick === FlickType.EVEN ? 50 : -50) : 0 }}
+        onMouseEnter={jump ? () => this.setState({ over: true }) : null}
+        onMouseLeave={jump ? () => this.setState({ over: false }) : null}
+      >
         <div
           className="image-container"
           ref={node => (this.imageContainer = node)}
@@ -86,7 +104,7 @@ class Slideshow extends Component {
           <ProgressiveImage src={this.photos[index].path} placeholder={this.photos[index].placeholder}>
             {src => (
               <img
-                style={{ height: showArrows ? '80vh' : 400, userSelect: 'none' }}
+                style={{ height: showArrows ? 'calc(100vh - 600px)' : 400, userSelect: 'none' }}
                 src={src}
                 alt={this.photos[index].path}
               />
@@ -94,12 +112,12 @@ class Slideshow extends Component {
           </ProgressiveImage>
         </div>
         <div className="photo-overlay">
-          {safeCall(showTitle, index) && (
-            <div className="photo-description--primary">{collectionInformation.title}</div>
-          )}
-          {safeCall(showDescription, index) && (
-            <div className="photo-description--secondary">{collectionInformation.description}</div>
-          )}
+          <div className={classnames('photo-description--primary', { hidden: !safeCall(showTitle, index) })}>
+            {collectionInformation.title}
+          </div>
+          <div className={classnames('photo-description--secondary', { hidden: !safeCall(showDescription, index) })}>
+            {collectionInformation.description}
+          </div>
         </div>
       </div>
     );
