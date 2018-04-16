@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import isFunction from 'lodash/isFunction';
@@ -8,7 +8,7 @@ import FlickType from '../FlickType';
 // If the first argument is a callback we invoke with the rest of the calling arguments, otherwise we just return the first argument.
 const safeCall = (value, ...rest) => (isFunction(value) ? value(...rest) : value);
 
-class Slideshow extends Component {
+class Slideshow extends PureComponent {
   constructor(props) {
     super(props);
     const numberInRotation = Number.isFinite(props.numberInRotation)
@@ -68,14 +68,14 @@ class Slideshow extends Component {
   }
 
   handleClick(event) {
-    const { showArrows, history, collectionInformation } = this.props;
+    const { showArrows, history, collectionInformation, clickToCollection } = this.props;
     const { side } = this.state;
     const { clientX } = event;
     if (showArrows && side === 'back') {
       this.moveToPrevImage();
     } else if (showArrows) {
       this.moveToNextImage();
-    } else {
+    } else if (clickToCollection) {
       history.push(`/styling/${collectionInformation.title}`);
     }
   }

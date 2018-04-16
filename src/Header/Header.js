@@ -13,7 +13,7 @@ const Header = () => {
       <div className="menu-bar">
         <NavLink to="/styling" activeClassName="active">styling</NavLink>
         <NavLink to="/art-direction" activeClassName="active">art direction</NavLink>
-        <NavLink to="/info" activeClassName="active">info</NavLink>
+        {/* <NavLink to="/info" activeClassName="active">info</NavLink> */}
       </div>
       <Route path="/styling" exact component={StylingHeader} />
     </div>
