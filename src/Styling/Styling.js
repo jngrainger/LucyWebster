@@ -17,7 +17,15 @@ export default class Styling extends React.Component {
         )}
         <div className="styling__content">
           {collections.filter(c => c.title === selectedTitle).map(collection => {
-            return <Slideshow key={collection.title} collectionInformation={collection} showArrows />;
+            return (
+              <Slideshow
+                key={collection.title}
+                collectionInformation={collection}
+                showArrows
+                showTitle={index => index === 0}
+                showDescription={index => index === 0}
+              />
+            );
           })}
         </div>
       </div>

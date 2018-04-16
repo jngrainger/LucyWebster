@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import { StylingHeader } from '../Styling';
 
-const NavigationBar = () => {
+const Header = () => {
   return (
-    <div className="navigation-container">
+    <div className="header">
       <div>
         <Link to="overview">
-          <img src="/logo.png" width="250" alt="logo" />
+          <img src="/logo.png" height={135} alt="logo" />
         </Link>
       </div>
       <div className="menu-bar">
@@ -14,8 +15,9 @@ const NavigationBar = () => {
         <Link to="/art-direction" activeClassName="active">art direction</Link>
         <Link to="/info" activeClassName="active">info</Link>
       </div>
+      <Route path="/styling" component={StylingHeader} />
     </div>
   );
 };
 
-export default NavigationBar;
+export default Header;

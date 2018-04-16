@@ -1,39 +1,37 @@
 import React from 'react';
-import * as basicScroll from 'basicscroll'
+import chunk from 'lodash/chunk';
 import collections from './collections';
 import Slideshow from '../Slideshow';
+import FlickType from '../FlickType';
 
 export default class Overview extends React.Component {
-  // componentDidMount() {
-  //   this.instance = basicScroll.create({
-  //     elem: this.elem,
-  //     from: 'top-bottom',
-  //     to: 'bottom-top',
-  //     props: {
-  //       '--translateX': {
-  //         from: '0',
-  //         to: '100%',
-  //         timing: 'elasticOut'
-  //       }
-  //     }
-  //   });
-  //   this.instance.start();
-  // }
-  // componentDidUpdate() {
-  //   this.instance.update();
-  // }
-  // componentWillUnmount() {
-  //   this.instance.destroy();
-  // }
+  
   render() {
-    return (
-      <div style={{ flex: '1 1 auto', overflow: 'auto' }} ref={node => (this.elem = node)}>
-        {collections.map(c => (
-          <div className="collection">
-            <Slideshow collectionInformation={c} numberInRotation={3} showTitle={false} showDescription={false} />
+    return chunk(collections, 2).map(pair => (
+      <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'stretch' }}>
+        {pair[0] && (
+          <div style={{ width: '50%', minWidth: 350 }}>
+            <Slideshow
+              collectionInformation={pair[0]}
+              numberInRotation={3}
+              autoFlick={FlickType.EVEN}
+              showTitle={false}
+              showDescription={false}
+            />
           </div>
-        ))}
+        )}
+        {pair[1] && (
+          <div style={{ width: '50%', alignSelf: 'flex-end' }}>
+            <Slideshow
+              collectionInformation={pair[1]}
+              numberInRotation={3}
+              autoFlick={FlickType.ODD}
+              showTitle={false}
+              showDescription={false}
+            />
+          </div>
+        )}
       </div>
-    );
+    ));
   }
 }

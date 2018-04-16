@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import isFunction from 'lodash/isFunction';
 import ProgressiveImage from 'react-progressive-image';
+
+// If the first argument is a callback we invoke with the rest of the calling arguments, otherwise we just return the first argument.
+const safeCall = (value, ...rest) => (isFunction(value) ? value(...rest) : value);
 
 class Slideshow extends Component {
   constructor(props) {
@@ -90,8 +94,12 @@ class Slideshow extends Component {
           </ProgressiveImage>
         </div>
         <div className="photo-overlay">
-          {showTitle && <div className="photo-description--primary">{collectionInformation.title}</div>}
-          {showDescription && <div className="photo-description--secondary">{collectionInformation.description}</div>}
+          {safeCall(showTitle, index) && (
+            <div className="photo-description--primary">{collectionInformation.title}</div>
+          )}
+          {safeCall(showDescription, index) && (
+            <div className="photo-description--secondary">{collectionInformation.description}</div>
+          )}
         </div>
       </div>
     );
