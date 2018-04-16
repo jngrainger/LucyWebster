@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { withRouter } from 'react-router-dom';
 import isFunction from 'lodash/isFunction';
 import ProgressiveImage from 'react-progressive-image';
 import FlickType from '../FlickType';
@@ -67,13 +68,15 @@ class Slideshow extends Component {
   }
 
   handleClick(event) {
-    const { showArrows } = this.props;
+    const { showArrows, history, collectionInformation } = this.props;
     const { side } = this.state;
     const { clientX } = event;
     if (showArrows && side === 'back') {
       this.moveToPrevImage();
-    } else {
+    } else if (showArrows) {
       this.moveToNextImage();
+    } else {
+      history.push(`/styling/${collectionInformation.title}`);
     }
   }
 
@@ -132,4 +135,4 @@ class Slideshow extends Component {
   }
 }
 
-export default Slideshow;
+export default withRouter(Slideshow);

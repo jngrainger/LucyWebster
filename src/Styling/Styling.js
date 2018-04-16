@@ -10,7 +10,7 @@ export default class Styling extends React.Component {
     this.state = {};
   }
 
-  componentWillRecieveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.match !== this.props.match) {
       this.setState({ seenDescription: false, seenTitle: false });
     }
