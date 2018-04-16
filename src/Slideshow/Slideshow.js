@@ -90,21 +90,29 @@ class Slideshow extends Component {
       <div
         ref={element => (this.element = element)}
         className="photo-container"
-        style={{ position: 'relative', left: over ? (autoFlick === FlickType.EVEN ? 50 : -50) : 0 }}
+        style={{
+          ...(showArrows ? { cursor: `url("/${side}.png"), auto` } : {}),
+          ...{ position: 'relative', left: over ? (autoFlick === FlickType.EVEN ? 50 : -50) : 0 },
+        }}
         onMouseEnter={jump ? () => this.setState({ over: true }) : null}
         onMouseLeave={jump ? () => this.setState({ over: false }) : null}
+        ref={node => (this.imageContainer = node)}
+        onClick={this.handleClick}
+        onMouseMove={this.handleMouseMove}
       >
         <div
           className="image-container"
-          ref={node => (this.imageContainer = node)}
-          onClick={this.handleClick}
-          onMouseMove={this.handleMouseMove}
-          style={showArrows ? { cursor: `url("/${side}.png"), auto` } : {}}
+          style={{ height: showArrows ? '550px' : 'auto', width: showArrows ? 'auto' : '550px' }}
         >
           <ProgressiveImage src={this.photos[index].path} placeholder={this.photos[index].placeholder}>
             {src => (
               <img
-                style={{ height: showArrows ? '550px' : 500, userSelect: 'none' }}
+                // {...{ height: showArrows ? '550px' : 'auto', width: showArrows ? 'auto' : '550px' }}
+                style={{
+                  userSelect: 'none',
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                }}
                 src={src}
                 alt={this.photos[index].path}
               />

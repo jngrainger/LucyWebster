@@ -33,7 +33,7 @@ export default class Overview extends React.Component {
               </div>
             ) : null,
             pair[1] ? (
-              <div style={{ flex: '1 1 50%', alignSelf: 'flex-end', paddingTop: 360 }}>
+              <div style={{ flex: '1 1 50%', alignSelf: 'flex-end', paddingTop: 220 }}>
                 <Slideshow
                   jump={false}
                   collectionInformation={pair[1]}
