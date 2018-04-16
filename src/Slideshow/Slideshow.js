@@ -104,7 +104,7 @@ class Slideshow extends Component {
           <ProgressiveImage src={this.photos[index].path} placeholder={this.photos[index].placeholder}>
             {src => (
               <img
-                style={{ height: showArrows ? 'calc(100vh - 600px)' : 500, userSelect: 'none' }}
+                style={{ height: showArrows ? '550px' : 500, userSelect: 'none' }}
                 src={src}
                 alt={this.photos[index].path}
               />

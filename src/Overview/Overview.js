@@ -23,7 +23,7 @@ export default class Overview extends React.Component {
             pair[0] ? (
               <div style={{ flex: '1 1 50%', minWidth: 150 }}>
                 <Slideshow
-                  jump
+                  jump={false}
                   collectionInformation={pair[0]}
                   numberInRotation={3}
                   autoFlick={FlickType.EVEN}
@@ -35,7 +35,7 @@ export default class Overview extends React.Component {
             pair[1] ? (
               <div style={{ flex: '1 1 50%', alignSelf: 'flex-end', paddingTop: 360 }}>
                 <Slideshow
-                  jump
+                  jump={false}
                   collectionInformation={pair[1]}
                   numberInRotation={3}
                   autoFlick={FlickType.ODD}
